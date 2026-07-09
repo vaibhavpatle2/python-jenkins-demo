@@ -5,5 +5,4 @@ pipeline {
                 bat 'python3 hello.py'
             }
         }
-    }
 }
