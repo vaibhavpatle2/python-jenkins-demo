@@ -1,10 +1,26 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.12'
+        }
+    }
 
     stages {
-        stage('Run Python') {
+        stage('Install') {
             steps {
-                sh 'python hello.py'
+                sh 'pip install -r requirements.txt'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'pytest'
+            }
+        }
+
+        stage('Run') {
+            steps {
+                sh 'python app.py'
             }
         }
     }
